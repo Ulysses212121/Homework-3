@@ -21,3 +21,4 @@ Additionally, use will have the option to save the generated password with the c
 -Javascript
 
 ### Screenshots
+![Deployed site screenshot](assets\images\password-generator-image.png)
