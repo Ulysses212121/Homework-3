@@ -1,23 +1,29 @@
-
+// variable declarations
 var specials = '!@#$%^&*()_+{}:"<>?\|[];\',./`~';
 var lowercase = 'abcdefghijklmnopqrstuvwxyz';
 var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var numbers = '0123456789';
-
 var allChars = "";
-
 var passwordOptions = "";
 
-document.getElementById("password-btn").addEventListener("click", function() {
+// onclick events
+document.getElementById("password-btn").addEventListener("click", function () {
     getPasswordOptions();
 });
 
+document.getElementById("copy").addEventListener("click", function () {
+    var pw = document.getElementById("password");
+    pw.select();
+    pw.setSelectionRange(0, 9999);
+    document.execCommand("copy");
+    alert("You're password was copied to the clipboard");
 
+});
 
-
+// Get password function - prompt legth and special character typeof, creat array from inputs, create password
 function getPasswordOptions() {
     var length = parseInt(
-        prompt("How many special characters do you want?"));
+        prompt("How many special characters do you want? \nMust enter number between 8-128"));
 
     if (isNaN(length)) {
         alert("Password length myst be a number");
@@ -53,39 +59,33 @@ function getPasswordOptions() {
         uppercaseChars,
         lowercaseChars,
     }
-    
+
     if (passwordOptions["specialChars"]) {
-        allChars = allChars + specials;     
+        allChars = allChars + specials;
     }
     if (passwordOptions["numericChars"]) {
-        allChars = allChars + numbers;     
+        allChars = allChars + numbers;
     }
     if (passwordOptions["uppercaseChars"]) {
-        allChars = allChars + uppercase;     
+        allChars = allChars + uppercase;
     }
     if (passwordOptions["lowercaseChars"]) {
-        allChars = allChars + lowercase;     
+        allChars = allChars + lowercase;
     }
-    
-    password = "";
+
+    genPassword = "";
 
     for (let i = 0; i < length; i++) {
-        password += allChars.charAt(Math.floor(Math.random() * allChars.length));
-        document.querySelector("#password").textContent = password;
+        genPassword += allChars.charAt(Math.floor(Math.random() * allChars.length));
+        document.querySelector("#password").textContent = genPassword;
+        console.log(genPassword);
     }
-    return password, passwordOptions;
+    return genPassword, passwordOptions;
 
-    
-    
+
+
 };
 
-
-
-// console.log(passwordOptions);
-
-
-    
-    // console.log(allChars);
 
 
 
